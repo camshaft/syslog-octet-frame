@@ -1,0 +1,9 @@
+{application, syslog_octet_frame,
+ [
+  {id, "syslog-octet-frame"},
+  {description, "Frame octet syslogs streams"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications, [kernel, stdlib]},
+  {env, []}
+ ]}.
