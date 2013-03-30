@@ -1,6 +1,7 @@
 -module(syslog_octet_frame).
 
 -export([parse/1]).
+-export([parse_async/3]).
 
 %% http://tools.ietf.org/html/rfc3164#section-4.1
 -define(MAX_LENGTH, 1024).
@@ -21,6 +22,22 @@ parse(Buffer, Frames)->
       {Frames, <<>>};
     _ ->
       {Frames, Buffer}
+  end.
+
+parse_async(Buffer, Module, Fn)->
+  parse_async(Buffer, Module, Fn, 0).
+
+parse_async(<<>>=Buffer, _Module, _Fn, Count)->
+  {Count, Buffer};
+parse_async(Buffer, Module, Fn, Count)->
+  case frame(Buffer) of
+    {ok, Frame, Rest} ->
+      catch Module:Fn(Frame),
+      parse_async(Rest, Module, Fn, Count+1);
+    eos ->
+      {Count, <<>>};
+    _ ->
+      {Count, Buffer}
   end.
 
 %%%%
