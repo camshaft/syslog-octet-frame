@@ -1,4 +1,4 @@
-syslog-octet-frame [![Build Status](https://travis-ci.org/CamShaft/syslog-octet-frame.png)](https://travis-ci.org/CamShaft/syslog-octet-frame)
+syslog-octet-frame [![Build Status](https://travis-ci.org/camshaft/syslog-octet-frame.png)](https://travis-ci.org/camshaft/syslog-octet-frame)
 =============
 
 Frame octet syslog streams
@@ -21,7 +21,7 @@ $ make bench
 ./rebar compile
 ==> syslog-octet-frame (compile)
 ./test/benchmark
-10000000 iterations in 9.18998s
-1088141.649927421 frames/sec
+10000000 iterations in 3.425706s
+2919106.309765053 frames/sec
 
 ```
